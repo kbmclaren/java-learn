@@ -2,6 +2,45 @@
 
 public class GroceryList {
 
+    public static void reverseGroceries( String[] groceryList ){
+        //in place, no new memory. 
+        // if size is even, then every element moves, if odd, then middle element does not move.
+        String twoTemp = null;
+        int tempVal = groceryList.length % 2; 
+
+        switch( tempVal ){
+            case 0:
+                //size is even, every element moves
+                for (int temp1 = 0; temp1 < (groceryList.length/2) ; ++temp1) {
+                    int temp2 = groceryList.length - 1 - temp1; 
+                    //now swap the elements at position temp1 and temp2.
+                    twoTemp = groceryList[temp1]; 
+                    groceryList[temp1] = groceryList[temp2]; 
+                    groceryList[temp2] = twoTemp; 
+                    twoTemp = null; 
+                }
+                break; 
+
+            case 1:
+                //if odd, then middle element does not move
+                for (int temp1 = 0; temp1 <= ((groceryList.length/2) - 1) ; ++temp1) {
+                    int temp2 = groceryList.length - 1 - temp1; 
+                    //now swap the elements at position temp1 and temp2.
+                    twoTemp = groceryList[temp1]; 
+                    groceryList[temp1] = groceryList[temp2]; 
+                    groceryList[temp2] = twoTemp; 
+                }
+                break; 
+
+            default:
+                System.out.println("How did we get here?");
+                break; 
+        }
+
+        return; 
+    }
+
+    //make more efficient: if comparison made only between items that the same first letter. 
     public static boolean hasDuplicates( String[] groceryList ){
         boolean flag = false; 
 
@@ -155,8 +194,15 @@ public class GroceryList {
         /* String[] groceryList = {"apples", "bananas", "banana", "chocolate"};
         System.out.println(isAlphabetized(groceryList)); */
 
-        String[] groceryList = {"apples", "banana", "Apples", "chocolate"};
-        System.out.println(hasDuplicates(groceryList));
+        /* String[] groceryList = {"apples", "banana", "Apples", "chocolate"};
+        System.out.println(hasDuplicates(groceryList)); */
+
+        String[] groceryList = {"apples", "banana", "Belgrade", "chocolate", "donuts"};
+        reverseGroceries(groceryList);
+
+        for (String item : groceryList) {
+            System.out.println(item);
+        }
         
     }
 }
