@@ -1,6 +1,48 @@
 //import java.util.ArrayList;
 
 public class GroceryList {
+    
+    //This solution is funny compared to the simplicity of the given solution.
+    // The given solution iterates the for-loop forward and doesn't need the if-elseif-else structure.
+    public static void rotateGroceries( String[] groceryList ){
+        //just in case a list of a single item given.
+        if ( groceryList.length == 1 ){
+            return; 
+        }
+
+        //single step rotation of last item to front of String[] and 
+        //   all other items one index to right/toward back. 
+        //more complex would take in the num of steps to rotate.
+        //no built in function to rotate Java Arrays.
+        String saveString = null; 
+        for( int i = groceryList.length - 1; i >= 0; --i ){
+            
+            if ( (i != (groceryList.length - 1)) && (i != 0) ){ 
+                groceryList[i] = groceryList[ i - 1 ]; 
+            }
+
+            else if( i == 0 ){
+                groceryList[i] = saveString; 
+                return; 
+            }
+
+            else {
+                //if we reached this code, this is the first for-loop traversal
+                saveString = groceryList[i]; 
+                groceryList[i] = groceryList[ i - 1 ];
+            }
+
+        }
+
+        return; 
+        // negative index not native to Java.
+        /*  
+        for( int i = -1; i < groceryList.length; ++i){
+            oneTemp = groceryList[ i + 1 ]; 
+            groceryList[ i + 1 ] = groceryList[ i ]; 
+
+        }  */
+    }
 
     public static void reverseGroceries( String[] groceryList ){
         //in place, no new memory. 
@@ -40,7 +82,7 @@ public class GroceryList {
         return; 
     }
 
-    //make more efficient: if comparison made only between items that the same first letter. 
+    //make more efficient: if comparison made only between items that have the same first letter. 
     public static boolean hasDuplicates( String[] groceryList ){
         boolean flag = false; 
 
@@ -197,12 +239,18 @@ public class GroceryList {
         /* String[] groceryList = {"apples", "banana", "Apples", "chocolate"};
         System.out.println(hasDuplicates(groceryList)); */
 
-        String[] groceryList = {"apples", "banana", "Belgrade", "chocolate", "donuts"};
+        /* String[] groceryList = {"apples", "banana", "Belgrade", "chocolate", "donuts"};
         reverseGroceries(groceryList);
 
         for (String item : groceryList) {
             System.out.println(item);
+        } */
+
+        String[] groceryList = {"apples", "banana", "Apples", "chocolate"};
+        rotateGroceries(groceryList);
+
+        for (String item : groceryList) {
+        System.out.println(item);
         }
-        
     }
 }
