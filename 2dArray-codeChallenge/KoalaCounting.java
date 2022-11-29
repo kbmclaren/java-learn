@@ -6,7 +6,7 @@
  * 1-D arrays are expected to hold a single day of observational data.
  * 2-D arrays are expected to hold as many days of data as there are sub arrays.
  * 
- * File: KoalaCountin.java
+ * File: KoalaCounting.java
  * Author: Caleb M. McLaren
  * Date: July, 2022
  */
